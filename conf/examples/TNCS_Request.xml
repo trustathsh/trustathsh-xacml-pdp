@@ -1,0 +1,56 @@
+<!-- AntiMaleware IMV Anfrage -->
+<Request>
+    <Subject>
+      <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+				 DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">
+		<AttributeValue>tncuser@fh-hannover.de</AttributeValue>
+      </Attribute>
+	</Subject>
+	
+	<Subject SubjectCategory="tnc:tncs">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:tncs:server-name"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<AttributeValue>TNCS</AttributeValue>
+		</Attribute>
+	</Subject>
+	
+	<Subject SubjectCategory="tnc:tncs">
+		<Attribute AttributeId="tnc:if-m:component:0x000000:2:recommendation"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<!-- Anti-Virus: '2' -->
+	        <AttributeValue>ALLOW</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="tnc:if-m:component:0x000000:5:recommendation"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<!-- Firewall: '5' -->
+	        <AttributeValue>ALLOW</AttributeValue>
+		</Attribute>
+	</Subject>
+	
+	<Resource>
+		<!-- Ressource must contain an attribute, even if spec allows other -->
+		<Attribute
+              AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+              DataType="http://www.w3.org/2001/XMLSchema#string">
+            <AttributeValue>network</AttributeValue>
+        </Attribute>
+    </Resource>
+    <Action>
+		<!--
+		<Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+              DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>access</AttributeValue>
+      </Attribute>
+	  -->
+    </Action>
+	<Environment>
+		<!--
+		A list of environment attributes.  Environment attributes are attributes that are not
+		associated with either the resource, the action or any of the subjects of the access
+		request. 
+		-->
+	</Environment>
+</Request>
+

@@ -1,0 +1,13 @@
+<Response>
+  <Result ResourceId="network">
+    <Decision>Permit</Decision>
+    <Status>
+      <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
+    </Status>
+    <Obligations>
+      <Obligation ObligationId="urn:oasis:names:tc:xacml:1.0:network:vlan:full_access" FulfillOn="Permit">
+        <AttributeAssignment AttributeId="urn:oasis:names:tc:xacml:1.0:network:vlan" DataType="http://www.w3.org/2001/XMLSchema#string">Default-VLAN</AttributeAssignment>
+      </Obligation>
+    </Obligations>
+  </Result>
+</Response>

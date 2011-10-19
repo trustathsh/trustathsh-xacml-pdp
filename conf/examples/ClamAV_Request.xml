@@ -1,0 +1,211 @@
+<!-- AntiMaleware IMV Anfrage -->
+<Request>
+    <Subject>
+      <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+				 DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">
+		<AttributeValue>tncuser@fh-hannover.de</AttributeValue>
+      </Attribute>
+	</Subject>
+	
+	<Subject SubjectCategory="tnc:if-m:component">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:component:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		<!-- IETF Vendor ID: '0x000000' -->
+        <AttributeValue>0x000000</AttributeValue>
+      </Attribute>
+	</Subject>
+	<Subject SubjectCategory="tnc:if-m:component">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:component:subtype"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		<!-- Anti-Virus: '2' -->
+        <AttributeValue>2</AttributeValue>
+      </Attribute>
+	</Subject>
+	
+	<Subject SubjectCategory="tnc:if-m:attribute:product-information">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<AttributeValue>0x000000</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		    <!-- Product Information: '2' -->
+			<AttributeValue>2</AttributeValue>
+		</Attribute>
+		
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- Product Vendor ID (http://pen.iana.org/pen/PenApplication.page) -->
+			<!-- ClamAV has no own VendorID, 0x032715 belongs to IBM Managed Security Services -->
+			<AttributeValue>0x032715</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- Product ID from Vendor -->
+			<!-- ClamAV Product ID unknown, 0x045612 is only an example -->
+			<AttributeValue>0x045612</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-name"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- Product Name -->
+			<AttributeValue>ClamAV 0.96.5</AttributeValue>
+		</Attribute>
+	</Subject>
+	
+	<Subject SubjectCategory="tnc:if-m:attribute:numeric-version">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<AttributeValue>0x000000</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		    <!-- Numeric Version: '3' -->
+			<AttributeValue>3</AttributeValue>
+		</Attribute>
+		
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:major-version"
+                   DataType="http://www.w3.org/2001/XMLSchema#integer">
+			<!-- Major Product Version -->
+			<AttributeValue>0</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:minor-version"
+                   DataType="http://www.w3.org/2001/XMLSchema#integer">
+			<!-- Minor Product Version -->
+			<AttributeValue>96</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:build-number"
+                   DataType="http://www.w3.org/2001/XMLSchema#integer">
+			<!-- Build Number -->
+			<AttributeValue>100644</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:service-pack-major"
+                   DataType="http://www.w3.org/2001/XMLSchema#integer">
+			<!-- Service Pack Major -->
+			<AttributeValue>5</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:service-pack-minor"
+                   DataType="http://www.w3.org/2001/XMLSchema#integer">
+			<!-- Service Pack Minor -->
+			<AttributeValue>0</AttributeValue>
+		</Attribute>
+	</Subject>
+	
+	<Subject SubjectCategory="tnc:if-m:attribute:string-version">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<AttributeValue>0x000000</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		    <!-- String Version: '4' -->
+			<AttributeValue>4</AttributeValue>
+		</Attribute>
+		
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:string-version:product-version-number"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- Product Version Number -->
+			<AttributeValue>0.96.5</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:string-version:internal-build-number"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- Build Number -->
+			<AttributeValue>100644</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:string-version:configuration-version-number"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- Configuration Version Number -->
+			<AttributeValue>12552</AttributeValue>
+		</Attribute>
+	</Subject>
+
+	<Subject SubjectCategory="tnc:if-m:attribute:operational-status">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<AttributeValue>0x000000</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		    <!-- Operational Status: '5' -->
+			<AttributeValue>5</AttributeValue>
+		</Attribute>
+		
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:status"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- 
+			  Value   Description
+			  =====   ===========
+			  0       Unknown or other
+			  1       Not installed
+			  2       Installed but not operational
+			  3       Operational
+			-->
+			<AttributeValue>3</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:result"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- 
+			  Value   Description
+			  =====   ===========
+			  0       Unknown or other
+			  1       Successful use with no errors detected
+			  2       Successful use with one or more errors detected
+			  3       Unsuccessful use (e.g., aborted)
+			-->
+			<AttributeValue>2</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:last-use"
+                   DataType="http://www.w3.org/2001/XMLSchema#dateTime">
+			<!-- last use -->
+			<AttributeValue>2011-01-22T17:51:03Z</AttributeValue>
+		</Attribute>
+	</Subject>
+
+	<Subject SubjectCategory="tnc:if-m:attribute:installed-packages">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- IETF Vendor ID: '0x000000' -->
+			<AttributeValue>0x000000</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+		    <!-- Installed packages: '7' -->
+			<AttributeValue>7</AttributeValue>
+		</Attribute>
+		
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:installed-packages:packages"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<!-- List of all installed packages -->
+			<!-- Only examples shown here -->
+			<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"><package><name>ClamAV Virus Database</name><version>12552</version></package></AttributeValue>
+		</Attribute>
+	</Subject>
+	
+    <Resource>
+		<!-- Ressource must contain an attribute, even if spec allows other -->
+		<Attribute
+              AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+              DataType="http://www.w3.org/2001/XMLSchema#string">
+            <AttributeValue>network</AttributeValue>
+        </Attribute>
+    </Resource>
+    <Action>
+		<!--
+		<Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+              DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>access</AttributeValue>
+      </Attribute>
+	  -->
+    </Action>
+	<Environment>
+		<!--
+		A list of environment attributes.  Environment attributes are attributes that are not
+		associated with either the resource, the action or any of the subjects of the access
+		request. 
+		-->
+	</Environment>
+</Request>
+

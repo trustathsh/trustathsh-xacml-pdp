@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="create-archives" name="tNAC XACML-PDP">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+	<property name="build.src" value="src" />
+	<property name="build.classes" value="bin" />
+	<property name="build.libs" value="libs" />
+	<property name="java.dir" value="." />
+	<property name="project-name" value="Trust@FHH XACML-PDP v${project-version}" />
+	<property name="project-version" value="0.4"/>
+	<property name="output-name" value="trustfhh-xacml-pdp"/>
+	<property name="manifest" value="MANIFEST.MF" />
+    
+	<path id="compile.classpath">
+	    <fileset dir="${build.libs}" includes="**/*.jar"/>
+	</path>
+		
+    <target name="init">
+        <mkdir dir="${build.classes}"/>
+    </target>
+    
+	<target name="clean">
+        <delete dir="${build.classes}"/>
+		<delete file="${output-name}.jar"/>
+		<delete file="${output-name}-${project-version}-src.tar.gz"/>
+		<delete file="${output-name}-${project-version}-bin.tar.gz"/>
+    </target>
+    
+	<target depends="init" name="build">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="${build.classes}" source="${source}" target="${target}">
+            <src path="${build.src}"/>
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+	
+	<target depends="build" name="build-jar">
+		<jar jarfile="${output-name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="de.fhhannover.inform.trust.xacml.DynamicNetworkPDPStarter"/>
+				<attribute name="Class-Path" value=". libs/xalan.jar libs/xercesImpl.jar libs/log4j-1.2.16.jar"/>
+			</manifest>
+			<fileset dir="${build.classes}">
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="create-source-archive">
+		<tar destfile="${output-name}-${project-version}-src.tar">
+			<tarfileset dir=".">
+				<exclude name="${build.classes}/**"/>
+				<exclude name="${output-name}.jar"/>
+				<exclude name="**/make-package.xml"/>
+			</tarfileset>
+		</tar>
+		<gzip destfile="${output-name}-${project-version}-src.tar.gz" src="${output-name}-${project-version}-src.tar"/>
+		<delete file="${output-name}-${project-version}-src.tar"/>
+	</target>
+
+	<target depends="build-jar" name="create-binary-archive">
+		<tar destfile="${output-name}-${project-version}-bin.tar">
+			<tarfileset dir=".">
+				<exclude name="${build.classes}/**"/>
+				<exclude name="${build.src}/**"/>
+				<exclude name="**/make-package.xml"/>
+				<exclude name="**/build.xml"/>
+				<exclude name="**/start.sh"/>
+				<exclude name="**/start.bat"/>
+				<exclude name="**/*.tar.gz"/>
+			</tarfileset>
+		</tar>
+		<gzip destfile="${output-name}-${project-version}-bin.tar.gz" src="${output-name}-${project-version}-bin.tar"/>
+		<delete file="${output-name}-${project-version}-bin.tar"/>
+	</target>
+	
+	<target name="create-archives">
+		<antcall target="create-source-archive" />
+		<antcall target="create-binary-archive" />	
+	</target>
+</project>

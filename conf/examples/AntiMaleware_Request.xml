@@ -1,0 +1,66 @@
+<!-- AntiMaleware IMV Anfrage -->
+<Request>
+    <Subject>
+      <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+				 DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">
+		<AttributeValue>user@domain.org</AttributeValue>
+      </Attribute>
+	</Subject>
+	<Subject SubjectCategory="tnc:if-m:component">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:component:component-type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>AntiMaleware</AttributeValue>
+      </Attribute>
+	</Subject>
+	<Subject SubjectCategory="tnc:if-m:attribute:product-information">
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:attribute-type"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>ProductInformation</AttributeValue>
+		</Attribute>
+		<Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-name"
+                   DataType="http://www.w3.org/2001/XMLSchema#string">
+			<AttributeValue>Avira AntiVir Personal - Free Antivirus</AttributeValue>
+		</Attribute>
+	</Subject>
+	<Subject SubjectCategory="tnc:if-m:attribute:operational-status">
+	  <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:attribute-type"
+                 DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>OperationalStatus</AttributeValue>
+      </Attribute>
+	  <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:status"
+                 DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>Operational</AttributeValue>
+      </Attribute>
+	  <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:result"
+                 DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>SUCCESS_NO_ERRORS</AttributeValue>
+      </Attribute>
+	  <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:last-use"
+                 DataType="http://www.w3.org/2001/XMLSchema#dateTime">
+        <AttributeValue>2010-10-26T12:34:21+01:00</AttributeValue>
+      </Attribute>
+	</Subject>
+    <Resource>
+		<!-- Ressource must contain an attribute, even if spec allows other -->
+		<Attribute
+              AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+              DataType="http://www.w3.org/2001/XMLSchema#string">
+            <AttributeValue>network</AttributeValue>
+        </Attribute>
+    </Resource>
+    <Action>
+		<!--
+		<Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+              DataType="http://www.w3.org/2001/XMLSchema#string">
+        <AttributeValue>access</AttributeValue>
+      </Attribute>
+	  -->
+    </Action>
+	<Environment>
+		<!--
+		A list of environment attributes.  Environment attributes are attributes that are not
+		associated with either the resource, the action or any of the subjects of the access
+		request. 
+		-->
+	</Environment>
+</Request>

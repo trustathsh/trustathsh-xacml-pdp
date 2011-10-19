@@ -1,0 +1,14 @@
+<Response>
+  <Result ResourceId="network">
+    <Decision>Deny</Decision>
+    <Status>
+      <StatusCode Value="urn:oasis:names:tc:xacml:1.0:status:ok"/>
+      <StatusMessage>Operationstatus caused a deny.</StatusMessage>
+    </Status>
+    <Obligations>
+      <Obligation ObligationId="urn:oasis:names:tc:xacml:1.0:network:vlan:isolate" FulfillOn="Deny">
+        <AttributeAssignment AttributeId="urn:oasis:names:tc:xacml:1.0:network:vlan" DataType="http://www.w3.org/2001/XMLSchema#string">Isolate-VLAN</AttributeAssignment>
+      </Obligation>
+    </Obligations>
+  </Result>
+</Response>

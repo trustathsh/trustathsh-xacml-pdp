@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy
+  xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os" 
+  xmlns:xacml-context="urn:oasis:names:tc:xacml:2.0:context:schema:os"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:os http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-os.xsd"
+  xmlns:md="http://www.med.example.com/schemas/record.xsd"
+  PolicyId="urn:oasis:names:tc:xacml:2.0:example:policyid:1"
+  RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+		Anti-Malware Policy
+    </Description>
+    <Target>
+		<!-- IMV auf das sich diese Policy bezieht -->
+		<Subjects>
+			<Subject>
+				<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">AntiMaleware</AttributeValue>
+					<SubjectAttributeDesignator
+					  SubjectCategory="tnc:if-m:component"
+					  AttributeId="urn:ietf:names:tc:xacml:1.0:component:component-type"
+					  DataType="http://www.w3.org/2001/XMLSchema#string" />
+				</SubjectMatch>
+            </Subject>
+		</Subjects>
+	</Target>
+	<!--
+	<Rule RuleId="ProductName" Effect="Permit">
+		<Description>
+            ProductName of AntiMalware may contain 'Avira' or ' G-DATA'.
+        </Description>
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">ProductInformation</AttributeValue>
+						<SubjectAttributeDesignator
+						  SubjectCategory="tnc:if-m:attribute:product-information"
+						  AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:attribute-type"
+						  DataType="http://www.w3.org/2001/XMLSchema#string"/>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+        <Condition>
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-normalize-space">
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-normalize-to-lower-case">
+							<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+								<SubjectAttributeDesignator
+								  SubjectCategory="tnc:if-m:attribute:product-information"
+								  AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-name"
+								  DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							</Apply>
+						</Apply>
+					</Apply>
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">.*avira.*</AttributeValue>
+				</Apply>
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-normalize-space">
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-normalize-to-lower-case">
+							<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+								<SubjectAttributeDesignator
+								  SubjectCategory="tnc:if-m:attribute:product-information"
+								  AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-name"
+								  DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							</Apply>
+						</Apply>
+					</Apply>
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">.*g-data.*</AttributeValue>
+				</Apply>
+			</Apply>
+		</Condition>
+    </Rule>
+	-->
+	<Rule RuleId="Operationstatus" Effect="Deny">
+		<Description>
+            OperationalStatus is 'Operational'.
+        </Description>
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OperationalStatus</AttributeValue>
+						<SubjectAttributeDesignator
+						  SubjectCategory="tnc:if-m:attribute:operational-status"
+						  AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:attribute-type"
+						  DataType="http://www.w3.org/2001/XMLSchema#string"/>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+        <Condition>
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+					<SubjectAttributeDesignator
+					  SubjectCategory="tnc:if-m:attribute:operational-status"
+                      AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:status"
+                      DataType="http://www.w3.org/2001/XMLSchema#string"/>
+				</Apply>
+				<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Operational</AttributeValue>
+			</Apply>
+			</Apply>
+		</Condition>
+    </Rule>
+	<Rule RuleId="ProductIsUpToDate" Effect="Permit">
+		<Description>
+            OperationalStatus last result was 'SUCCESS_NO_ERRORS'.
+        </Description>
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OperationalStatus</AttributeValue>
+						<SubjectAttributeDesignator
+						  SubjectCategory="tnc:if-m:attribute:operational-status"
+						  AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:attribute-type"
+						  DataType="http://www.w3.org/2001/XMLSchema#string"/>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+        <Condition>
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+					<SubjectAttributeDesignator
+					  SubjectCategory="tnc:if-m:attribute:operational-status"
+                      AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:result"
+                      DataType="http://www.w3.org/2001/XMLSchema#string"/>
+				</Apply>
+				<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">SUCCESS_NO_ERRORS</AttributeValue>
+			</Apply>
+			</Apply>
+		</Condition>
+    </Rule>
+	<!--
+	<Obligations>  
+		<Obligation 
+		  ObligationId="urn:oasis:names:tc:xacml:1.0:network:vlan:isolate" 
+		  FulfillOn="Deny"> 
+			<AttributeAssignment 
+			  AttributeId="urn:oasis:names:tc:xacml:1.0:network:vlan"
+			  DataType="http://www.w3.org/2001/XMLSchema#string">
+				Isolate-VLAN
+			</AttributeAssignment>
+		</Obligation>
+		<Obligation 
+		  ObligationId="urn:oasis:names:tc:xacml:1.0:network:vlan:full_access" 
+		  FulfillOn="Permit"> 
+			<AttributeAssignment 
+			  AttributeId="urn:oasis:names:tc:xacml:1.0:network:vlan"
+			  DataType="http://www.w3.org/2001/XMLSchema#string">
+				Default-VLAN
+			</AttributeAssignment>
+		</Obligation>
+	</Obligations>
+	-->
+</Policy>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Request xmlns="urn:oasis:names:tc:xacml:2.0:context:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:context:schema:os access_control-xacml-2.0-context-schema-os.xsd">
+
+  <Subject>
+    <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>tncuser</AttributeValue>
+    </Attribute>
+  </Subject>
+
+  <Subject SubjectCategory="tnc:if-m:component">
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:component:vendor-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>0x000000</AttributeValue>
+    </Attribute>
+  </Subject>
+
+  <Subject SubjectCategory="tnc:if-m:component">
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:component:subtype" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>2</AttributeValue>
+    </Attribute>
+  </Subject>
+
+  <Subject SubjectCategory="tnc:if-m:attribute:product-information">
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>0x000000</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>2</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:vendor-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>0x032715</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>0x045612</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:product-information:product-name" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>ClamAV</AttributeValue>
+    </Attribute>
+  </Subject>
+
+  <Subject SubjectCategory="tnc:if-m:attribute:operational-status">
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>0x000000</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>5</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:operational-status:status" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>3</AttributeValue>
+    </Attribute>
+  </Subject>
+
+  <Subject SubjectCategory="tnc:if-m:attribute:numeric-version">
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:vendor-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>0x000000</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:type" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>3</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:major-version" DataType="http://www.w3.org/2001/XMLSchema#integer">
+      <AttributeValue>0</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:minor-version" DataType="http://www.w3.org/2001/XMLSchema#integer">
+      <AttributeValue>96</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:service-pack-major" DataType="http://www.w3.org/2001/XMLSchema#integer">
+      <AttributeValue>5</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:service-pack-minor" DataType="http://www.w3.org/2001/XMLSchema#integer">
+      <AttributeValue>53</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:ietf:names:tc:xacml:1.0:attribute:numeric-version:build-number" DataType="http://www.w3.org/2001/XMLSchema#integer">
+      <AttributeValue>13492</AttributeValue>
+    </Attribute>
+  </Subject>
+
+  <Resource>
+    <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>network</AttributeValue>
+    </Attribute>
+  </Resource>
+
+  <Action>
+    <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:action-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+      <AttributeValue>access</AttributeValue>
+    </Attribute>
+  </Action>
+
+  <Environment/>
+
+</Request>

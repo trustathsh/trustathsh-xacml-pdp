@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy
+  xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os" 
+  xmlns:xacml-context="urn:oasis:names:tc:xacml:2.0:context:schema:os"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:os http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-os.xsd"
+  PolicyId="PolicyId:1"
+  RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+		Policy for TNCS. This Policy tests if Anti Virus IMV send ALLOW as its recommendation.
+    </Description>
+    <Target>
+		<Subjects>
+			<Subject>
+				<SubjectMatch
+					  MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">tncuser</AttributeValue>
+					<SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                              DataType="http://www.w3.org/2001/XMLSchema#string"/>
+				</SubjectMatch>
+				<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">TNCS</AttributeValue>
+					<SubjectAttributeDesignator
+					  SubjectCategory="tnc:tncs"
+					  AttributeId="urn:ietf:names:tc:xacml:1.0:tncs:server-name"
+					  DataType="http://www.w3.org/2001/XMLSchema#string" />
+				</SubjectMatch>
+            </Subject>
+		</Subjects>
+	</Target>
+	<Rule RuleId="DefaultPermit" Effect="Permit">
+		<Description>
+            Permit if this policy applies, and no other rule results in deny.
+        </Description>
+	</Rule>
+	<!--
+	   Value    Integer           Definition
+	   =====    =======           ==========
+	   0        Testing           Reserved for use in specification examples, experimentation and testing
+
+	   1        Operating System  Operating system running on the endpoint
+
+	   2        Anti-Virus        Host-based anti-virus software
+
+	   3        Anti-Spyware      Host-based anti-spyware software
+
+	   4        Anti-Malware      Host-based anti-malware (e.g., anti-bot) software not included within anti-virus or anti-spyware components
+
+	   5        Firewall          Host-based firewall
+
+	   6        IDPS              Host-based Intrusion Detection and/or Prevention Software (IDPS)
+
+	   7        VPN               Host-based Virtual Private Network (VPN) software
+
+	   8        NEA Client        NEA client software
+	-->
+	<Rule RuleId="AntiVirusIMV" Effect="Deny">
+		<Description>
+            Validate Anti Virus IMV
+        </Description>
+        <Condition>
+		<!--
+		ALLOW  
+		NO_ACCESS          
+		ISOLATE  
+		NO_RECOMMENDATION
+		-->
+			<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">ALLOW</AttributeValue>
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+						<SubjectAttributeDesignator
+						  SubjectCategory="tnc:tncs"
+						  AttributeId="tnc:if-m:component:0x000000:2:recommendation"
+						  DataType="http://www.w3.org/2001/XMLSchema#string"/>
+					</Apply>
+				</Apply>
+			</Apply>
+		</Condition>
+    </Rule>
+	<Obligations>  
+		<Obligation 
+		  ObligationId="urn:oasis:names:tc:xacml:1.0:network:vlan:isolate" 
+		  FulfillOn="Deny"> 
+			<AttributeAssignment 
+			  AttributeId="urn:oasis:names:tc:xacml:1.0:network:vlan"
+			  DataType="http://www.w3.org/2001/XMLSchema#string">Isolate-VLAN</AttributeAssignment>
+		</Obligation>
+		<Obligation 
+		  ObligationId="urn:oasis:names:tc:xacml:1.0:network:vlan:full_access" 
+		  FulfillOn="Permit"> 
+			<AttributeAssignment 
+			  AttributeId="urn:oasis:names:tc:xacml:1.0:network:vlan"
+			  DataType="http://www.w3.org/2001/XMLSchema#string">Default-VLAN</AttributeAssignment>
+		</Obligation>
+	</Obligations>
+</Policy>

@@ -1,0 +1,79 @@
+=====================================================
+  _____                _     ____  _____ _   _ _   _ 
+ |_   _|_ __ _   _ ___| |_  / __ \|  ___| | | | | | |
+   | | | '__| | | / __| __|/ / _` | |_  | |_| | |_| |
+   | | | |  | |_| \__ \ |_| | (_| |  _| |  _  |  _  |
+   |_| |_|   \__,_|___/\__|\ \__,_|_|   |_| |_|_| |_|
+                            \____/                   
+
+=====================================================
+
+1. INTRODUCTION
+
+The Trust@FHH XACML PDP is a software component to evaluate incoming 
+XACML [1] requests and generating proper XACML responses. It is based 
+on the XACML implementation by Sun [2] and uses parts of the 
+JBoss software [3]. It can be used to evaluate measurements of IMCs in
+a TNC enhanced network and generate recommendations based on the responses.
+
+2. INSTALLATION AND USING THE XACML PDP
+
+- Binary archive
+If you downloaded the binary archive, the Trust@FHH XACML PDP is ready to use,
+just unpack the archive.
+Then use start-jar.sh/bat to run the software. See section 3. for commandline
+arguments.
+
+- Source Archive
+If you downloaded the source archive, unpack it and run ant with the provided
+build file 'build.xml'.
+Afterwards, use the delivered start.bat or start.sh scripts to run the software.
+
+- GIT version
+If you are using the GIT version, just run ant with the provided buildfile
+'build.xml'
+
+- Create binary and source archives
+You can use ant with the 'make-package.xml'-buildfile to create a binary and
+a source archive of the Trust@FHH XACML PDP.
+
+3. COMMAND LINE ARGUMENTS
+
+When you start the XACML PDP, you must specify the local port of the XACML PDP
+as the first command line argument. Then you have to specify the time in 
+milliseconds, after which the XACML PDP has to check for updates on the given 
+policy directory. The third argument is the filename postfix for the policy 
+files, and the last argument specifies the directory that holds the policy files.
+$ sh ./start-jar.sh 12345 10000 xml conf/
+Now the XACML PDP is running and evaluating incoming requests in separate 
+threads. After the given amount of time, it checks for changes in the loaded 
+policies and if there are new policies or if existing policies were deleted.
+
+4. ADDITIONAL INFORMATION
+
+For additional information about using the XACML PDP in a TNC enhanced network,
+or how to configure a TNC Server for XACML evaluation, please refer to the 
+Trust@FHH research group's website [5] and wiki [4].
+
+5. FEEDBACK
+
+We really appreciate any feedback about the Trust@FHH XACML PDP. If you find 
+bugs, feel free to report them via email to trust@f4-i.fh-hannover.de.
+
+6. ACKNOWLEDGEMENT
+
+The Trust@FHH XACML PDP is implemented by the Trust@FHH research group of the 
+Fachhochschule Hannvover, the University of Applied Sciences and Arts, located 
+in Lower Saxony, Germany [6]. Parts of this work have been carried out within
+the tNAC research project (support code 1704B08) which is funded by the german 
+BMBF (Federal Ministry of Education and Research) [7].
+
+7. REFERENCES
+
+[1] http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xacml
+[2] http://sunxacml.sourceforge.net/
+[3] http://www.jboss.org/overview.html
+[4] http://trust.inform.fh-hannover.de/wiki/index.php/Main_Page
+[5] https://trust.inform.fh-hannover.de
+[6] http://www.fh-hannover.de
+[7] http://www.bmbf.de/en/index.php
