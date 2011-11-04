@@ -36,7 +36,10 @@
 
 package com.sun.xacml.attr;
 
-import com.sun.xml.internal.ws.util.xml.XmlUtil;
+/*
+ * Removed, instead using org.jboss.messaging.util.XMLUtils with own changes
+ */
+//import com.sun.xml.internal.ws.util.xml.XmlUtil;
 import java.net.URI;
 
 import org.jboss.messaging.util.XMLUtils;
